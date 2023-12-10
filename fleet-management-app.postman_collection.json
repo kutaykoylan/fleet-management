@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "b431e6ad-38b4-40ee-bbdd-8407cd189845",
+		"name": "Fleet Management  App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Health returns 200\", () => {   \r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Distribute Shipment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const distributeShipmentResponse = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Distribute returns 200\", () => {   \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Distribute returns Correct Response Body\", () => {   \r",
+							"    pm.expect(distributeShipmentResponse.vehicle).to.eql('34 TL 34');\r",
+							"    \r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveryPoint).to.eql(1);    \r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveries[0].state).to.eql(4);\r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveries[1].state).to.eql(4);   \r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveries[2].state).to.eql(4);   \r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveries[3].state).to.eql(3);       \r",
+							"    pm.expect(distributeShipmentResponse.route[0].deliveries[4].state).to.eql(3);  \r",
+							"\r",
+							"    pm.expect(distributeShipmentResponse.route[1].deliveryPoint).to.eql(2);    \r",
+							"    pm.expect(distributeShipmentResponse.route[1].deliveries[0].state).to.eql(4);\r",
+							"    pm.expect(distributeShipmentResponse.route[1].deliveries[1].state).to.eql(4);   \r",
+							"    pm.expect(distributeShipmentResponse.route[1].deliveries[2].state).to.eql(4);   \r",
+							"    pm.expect(distributeShipmentResponse.route[1].deliveries[3].state).to.eql(4);       \r",
+							"\r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveryPoint).to.eql(3);    \r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveries[0].state).to.eql(3);\r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveries[1].state).to.eql(3);   \r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveries[2].state).to.eql(4);   \r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveries[3].state).to.eql(4);       \r",
+							"    pm.expect(distributeShipmentResponse.route[2].deliveries[4].state).to.eql(3);   \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vehicle\": \"34 TL 34\",\r\n  \"route\": [\r\n    {\r\n      \"deliveryPoint\": 1,\r\n      \"deliveries\": [\r\n        {\"barcode\": \"P7988000121\"},\r\n        {\"barcode\": \"P7988000122\"},\r\n        {\"barcode\": \"P7988000123\"},\r\n        {\"barcode\": \"P8988000121\"},\r\n        {\"barcode\": \"C725799\"}\r\n      ]\r\n    },\r\n    {\r\n      \"deliveryPoint\": 2,\r\n      \"deliveries\": [\r\n        {\"barcode\": \"P8988000123\"},\r\n        {\"barcode\": \"P8988000124\"},\r\n        {\"barcode\": \"P8988000125\"},\r\n        {\"barcode\": \"C725799\"}\r\n      ]\r\n    },\r\n    {\r\n      \"deliveryPoint\": 3,\r\n      \"deliveries\": [\r\n        {\"barcode\": \"P9988000126\"},\r\n        {\"barcode\": \"P9988000127\"},\r\n        {\"barcode\": \"P9988000128\"},\r\n        {\"barcode\": \"P9988000129\"},\r\n        {\"barcode\": \"P9988000130\"}\r\n      ]\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/vehicles/34TL34/distribute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"vehicles",
+						"34TL34",
+						"distribute"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
