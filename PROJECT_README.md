@@ -1,4 +1,4 @@
-<h1 align="left"> Trendyol Fleet Management </h1>
+<h1 align="left">Fleet Management </h1>
 
 <h3 align="left">Backend Application </h3>
 
@@ -204,28 +204,3 @@ This scenario will be run by our reviewers during the review process. Make sure 
 - We expect sack C725800 to be in the "unloaded" state.
 - We expect barcode P8988000122 to be in the "unloaded" state.
 - We expect barcode P8988000126 to be in the "unloaded" state.
-
-## Caution
-
-You should be aware of the following conventions while you are working on this application;
-
-- Publish a running project
-- Apply SOLID and OOP principles
-- Document your project for a developer
-- Handle exceptions for resilient web service
-- Test Driven Development is highly advised, but it's up to you how you are going to test your code.
-- You should commit to a local git repository and include the git repository (.git/) in the upload.
-
-## Warning
-
-Please **DO NOT** publish the project on Github, Gitlab, etc. We will provide a private github repository for you and we expect you to push your changes to that private repository or send your workspace folder as compressed.
-
-## Follow Us!
-
-[Trendyol Tech Medium](https://medium.com/trendyol-tech)
-
-[Trendyol Open Source GitHub](https://github.com/Trendyol)
-
-[Trendyol Tech Youtube](https://www.youtube.com/channel/UCUBiayLMggBAsiYvGLzQJ5w)
-
-[Trendyol Tech Kommunity](https://kommunity.com/@trendyol)
